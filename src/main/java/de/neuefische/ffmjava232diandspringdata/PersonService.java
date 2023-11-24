@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +21,10 @@ public class PersonService {
                 .orElseThrow(() -> new RuntimeException("Not Found"));
     }
 
-    public Person savePerson(Person person){
-        return repo.save(person);
+    public Person savePerson(NewPersonDTO person){
+        Person newPerson = new Person(UUID.randomUUID().toString(), person.name());
+
+        return repo.save(newPerson);
     }
 
     public Person findByName(String name){
