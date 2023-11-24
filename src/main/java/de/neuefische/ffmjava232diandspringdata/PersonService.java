@@ -1,6 +1,7 @@
 package de.neuefische.ffmjava232diandspringdata;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.UUID;
 public class PersonService {
 
     private final PersonRepo repo;
+    private final IdService idService;
 
     public List<Person> getAllPersons() {
         return repo.findAll();
@@ -22,7 +24,7 @@ public class PersonService {
     }
 
     public Person savePerson(NewPersonDTO person){
-        Person newPerson = new Person(UUID.randomUUID().toString(), person.name());
+        Person newPerson = new Person(idService.randomId(), person.name());
 
         return repo.save(newPerson);
     }
