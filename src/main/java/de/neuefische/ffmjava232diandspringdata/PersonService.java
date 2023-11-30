@@ -33,4 +33,8 @@ public class PersonService {
         return repo.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Not Found"));
     }
+
+    public List<Person> getAllPersonsWithName(String name) {
+        return repo.findAllByName(name);
+    }
 }

@@ -14,7 +14,11 @@ public class PersonController {
 
 
     @GetMapping
-    public List<Person> getAllPersons(){
+    public List<Person> getAllPersons(@RequestParam(required = false) String name){
+        if (name != null) {
+            return service.getAllPersonsWithName(name);
+        }
+
         return service.getAllPersons();
     }
 

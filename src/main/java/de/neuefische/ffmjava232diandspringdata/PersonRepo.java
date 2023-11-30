@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -11,5 +12,5 @@ import java.util.Optional;
 public interface PersonRepo extends MongoRepository<Person, String> {
 
     public Optional<Person> findByName(String name);
-
+    public List<Person> findAllByName(String name);
 }
